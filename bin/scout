@@ -5,21 +5,40 @@ set -e
 
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ACTION=$1
+shift 2>/dev/null || true
 MODE=""
+WINDOW=""
 
-# Basic parsing for --mode
-if [ "$ACTION" == "analyze" ]; then
-    if [ "$2" == "--mode" ] && [ -n "$3" ]; then
-        MODE=$3
-    else
-        echo "Uso: ./bin/scout analyze --mode [rules|ai]"
-        exit 1
-    fi
-else
-    echo "Uso: ./bin/scout analyze --mode [rules|ai]"
+# Parse remaining args
+while [ -n "$1" ]; do
+    case "$1" in
+        --mode)
+            shift
+            MODE=$1
+            ;;
+        --window)
+            shift
+            WINDOW=$1
+            ;;
+        *)
+            echo "Uso: ./bin/scout analyze --mode [rules|ai] [--window N]"
+            exit 1
+            ;;
+    esac
+    shift
+done
+
+if [ -z "$MODE" ]; then
+    echo "Uso: ./bin/scout analyze --mode [rules|ai] [--window N]"
     exit 1
 fi
 
 echo "[Scouter] Levantando contenedor Docker para modo $MODE..."
+EXTRA_ARGS=""
+if [ -n "$WINDOW" ]; then
+    EXTRA_ARGS="--window $WINDOW"
+    echo "[Scouter] Ventana de tiempo: $WINDOW horas"
+fi
+
 cd "$PROJECT_ROOT"
-docker compose run --rm scouter --mode "$MODE"
+docker compose run --rm scouter --mode "$MODE" $EXTRA_ARGS

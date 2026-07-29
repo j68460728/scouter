@@ -10,6 +10,7 @@ from reporter import generate_report
 def main():
     parser = argparse.ArgumentParser(description="Scouter Engine - Modo Dual")
     parser.add_argument("--mode", choices=["rules", "ai"], required=True, help="Modo de ejecución: rules o ai")
+    parser.add_argument("--window", type=int, default=None, help="Ventana de tiempo en horas (opcional). Si no se define, se traen todos los partidos disponibles.")
     
     args = parser.parse_args()
     
@@ -17,7 +18,7 @@ def main():
     
     # 1. Recolección
     print("[Scouter] Consultando fuentes y obteniendo partidos...")
-    matches = get_matches()
+    matches = get_matches(window_hours=args.window)
     print(f"[Scouter] Se encontraron {len(matches)} partidos.")
     
     if not matches:

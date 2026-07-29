@@ -33,6 +33,7 @@ Fecha: {{ date }}
 {% for match in selected %}
 ### {{ match.match.home_team }} vs {{ match.match.away_team }}
 - **Competición:** {{ match.match.competition }}
+- **Fecha/Hora:** {{ match.match.date }}
 - **Puntuación:** {{ match.score }}
 - **Justificación:**
 {% for j in match.justification %}  - {{ j }}

@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   scouter:
     build: .
@@ -16,3 +14,5 @@ services:
       - API_BASE_URL=http://host.docker.internal:20128/v1
       # Model identifier for OmniRoute
       - AI_MODEL=google/gemini-pro
+      # Football Data API Key
+      - FOOTBALL_DATA_API_KEY=41d9a55df11e436f9fe5b90a76c8fc48
