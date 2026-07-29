@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Scouter Engine - Entry Point
+set -e
+
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ACTION=$1
+MODE=""
+
+# Basic parsing for --mode
+if [ "$ACTION" == "analyze" ]; then
+    if [ "$2" == "--mode" ] && [ -n "$3" ]; then
+        MODE=$3
+    else
+        echo "Uso: ./bin/scout analyze --mode [rules|ai]"
+        exit 1
+    fi
+else
+    echo "Uso: ./bin/scout analyze --mode [rules|ai]"
+    exit 1
+fi
+
+echo "[Scouter] Levantando contenedor Docker para modo $MODE..."
+cd "$PROJECT_ROOT"
+docker compose run --rm scouter --mode "$MODE"

@@ -1,0 +1,51 @@
+# INFORME TÉCNICO DE ANÁLISIS COMPETITIVO
+## Ejecución ID: {{ execution_id }}
+## Ventana Temporal: {{ start_window }} a {{ end_window }}
+
+---
+
+### EVIDENCIA PREVIA AL ANÁLISIS
+- **Fecha y Hora de Ejecución:** {{ timestamp }}
+- **Partidos Encontrados:** {{ total_found }}
+- **Competiciones Detectadas:** {{ competitions_list }}
+- **Fuentes Consultadas:** {{ sources_used }}
+
+---
+
+### ENCUENTROS CON DIFERENCIA SIGNIFICATIVA SELECCIONADOS
+
+{% for match in selected_matches %}
+#### {{ loop.index }}. {{ match.favorite }} vs {{ match.rival }}
+- **Competición:** {{ match.competition }}
+- **Fecha/Hora:** {{ match.datetime }}
+- **Puntuación Total:** **{{ match.total_score }}/10**
+- **Desglose de Puntuación:**
+  - Categoría: {{ match.scores.category }}
+  - Prestigio/Historial: {{ match.scores.prestige }}
+  - Valor Plantilla: {{ match.scores.squad }}
+  - Ranking: {{ match.scores.ranking }}
+  - Rendimiento Reciente: {{ match.scores.recent }}
+- **Justificación Técnica:** {{ match.justification }}
+- **Fuentes de Evidencia:** {{ match.evidence_sources }}
+
+---
+{% endfor %}
+
+### RESUMEN EJECUTIVO
+- **Total de partidos encontrados:** {{ stats.total }}
+- **Total de partidos evaluados:** {{ stats.evaluated }}
+- **Total de partidos descartados:** {{ stats.discarded }}
+- **Total de partidos seleccionados:** {{ stats.selected }}
+
+**Distribución por competición:**
+{{ stats.distribution }}
+
+**Observaciones Relevantes:**
+{{ observations }}
+
+---
+### AUTOAUDITORÍA DE CALIDAD
+- [ ] ¿Cada afirmación está respaldada por evidencia?
+- [ ] ¿Se cumple el umbral de puntuación >= 8?
+- [ ] ¿Consistencia entre fuentes verificada?
+- **Resultado Auditoría:** {{ audit_result }}

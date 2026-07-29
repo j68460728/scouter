@@ -1,0 +1,41 @@
+{
+  "name": "Football Scouter Engine",
+  "version": "1.0.0",
+  "workflow": [
+    {
+      "step": 1,
+      "id": "INITIALIZATION",
+      "description": "Calculate exact 24h temporal window and initialize session logs.",
+      "required_outputs": ["start_time", "end_time", "execution_id"]
+    },
+    {
+      "step": 2,
+      "id": "DISCOVERY",
+      "description": "Identify all football matches within the temporal window using authorized sources.",
+      "required_outputs": ["total_matches_found", "match_list"]
+    },
+    {
+      "step": 3,
+      "id": "EVALUATION",
+      "description": "Apply the scoring matrix to each discovered match. Filter those with score >= 8.",
+      "required_outputs": ["evaluated_matches", "selected_matches", "discarded_matches"]
+    },
+    {
+      "step": 4,
+      "id": "AUDIT",
+      "description": "Cross-reference data between sources and verify evidence for each score.",
+      "required_outputs": ["audit_status", "verified_evidence"]
+    },
+    {
+      "step": 5,
+      "id": "REPORTING",
+      "description": "Generate the final technical report and execution logs.",
+      "required_outputs": ["markdown_report", "json_logs"]
+    }
+  ],
+  "constraints": [
+    "No halluciations: every data point must have a source.",
+    "Autonomous: no user intervention after launch.",
+    "Determinism: same input data must yield same evaluation scores."
+  ]
+}
