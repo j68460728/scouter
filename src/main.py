@@ -7,18 +7,30 @@ from evaluator_rules import evaluate_matches_with_rules
 from evaluator_ai import evaluate_matches_with_ai
 from reporter import generate_report
 
+def parse_window(value):
+    if value is None:
+        return None
+    value = value.strip()
+    if value.endswith('h'):
+        return int(value[:-1])
+    elif value.endswith('d'):
+        return int(value[:-1]) * 24
+    else:
+        return int(value) * 24  # default unit: days
+
 def main():
     parser = argparse.ArgumentParser(description="Scouter Engine - Modo Dual")
     parser.add_argument("--mode", choices=["rules", "ai"], required=True, help="Modo de ejecución: rules o ai")
-    parser.add_argument("--window", type=int, default=None, help="Ventana de tiempo en horas (opcional). Si no se define, se traen todos los partidos disponibles.")
+    parser.add_argument("--window", type=str, default=None, help="Ventana de tiempo (opcional). Ej: 7d (7 días), 24h (24 horas). Por defecto: días. Sin el parámetro se traen todos los partidos.")
     
     args = parser.parse_args()
+    window_hours = parse_window(args.window)
     
     print(f"[Scouter] Iniciando Motor de Análisis Competitivo en modo: {args.mode.upper()}...")
     
     # 1. Recolección
     print("[Scouter] Consultando fuentes y obteniendo partidos...")
-    matches = get_matches(window_hours=args.window)
+    matches = get_matches(window_hours=window_hours)
     print(f"[Scouter] Se encontraron {len(matches)} partidos.")
     
     if not matches:
