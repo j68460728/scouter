@@ -1,5 +1,6 @@
 import os
 import json
+import yaml
 from datetime import datetime, timedelta
 from jinja2 import Environment, FileSystemLoader
 
@@ -36,20 +37,24 @@ def generate_report(mode, evaluated_matches):
 Fecha: {{ date }}
 
 ## Partidos Evaluados: {{ evaluated | length }}
-## Partidos Seleccionados (Umbral >= 8): {{ selected | length }}
+## Partidos Seleccionados (Diferencia >= {{ min_diff }}): {{ selected | length }}
 
-{% for match in selected %}
-### ⭐ {{ match.favorite_label }} (Favorito) vs {{ match.rival_label }}
-- **Competición:** {{ match.match.competition }}
-- **Fecha/Hora (Colombia):** {{ match.colombia_date }}
-- **Puntuación:** {{ match.score }}
-- **Justificación:**
-{% for j in match.justification %}  - {{ j }}
-{% endfor %}
+{% for m in selected %}
+### ⭐ {{ m.favorite_label }} (Favorito) vs {{ m.rival_label }} — Diferencia: {{ m.difference }} pts
+- **Competición:** {{ m.match.competition }}
+- **Fecha/Hora (Colombia):** {{ m.colombia_date }}
+- **Fuerza local ({{ m.match.home_team }}):** {{ m.home_strength.total }}/100
+  - Estructural: {{ m.home_strength.structural }}/60
+  - Forma reciente: {{ m.home_strength.recent_form }}/30
+  - Contexto: {{ m.home_strength.context }}/10
+- **Fuerza visitante ({{ m.match.away_team }}):** {{ m.away_strength.total }}/100
+  - Estructural: {{ m.away_strength.structural }}/60
+  - Forma reciente: {{ m.away_strength.recent_form }}/30
+  - Contexto: {{ m.away_strength.context }}/10
 {% endfor %}
 
 ---
-*Evidencia guardada en `evidence/evidence_{{ mode }}_{{ timestamp }}.json`*
+*Umbral de diferencia mínimo: {{ min_diff }} pts. Evidencia en `evidence/evidence_{{ mode }}_{{ timestamp }}.json`*
 """)
             
     env = Environment(loader=FileSystemLoader(templates_dir))
@@ -67,12 +72,18 @@ Fecha: {{ date }}
             m['favorite_label'] = m['match']['away_team']
             m['rival_label'] = m['match']['home_team']
     
+    matrix_path = os.path.join(base_dir, 'rules', 'strength_matrix.yaml')
+    with open(matrix_path) as f:
+        matrix = yaml.safe_load(f)
+    min_diff = matrix.get('confidence', {}).get('min_difference', 15)
+    
     markdown_output = template.render(
         mode=mode,
         date=datetime.now().strftime("%Y-%m-%d %H:%M"),
         timestamp=timestamp,
         evaluated=evaluated_matches,
-        selected=selected_matches
+        selected=selected_matches,
+        min_diff=min_diff
     )
     
     report_path = os.path.join(reports_dir, f'report_{mode}_{timestamp}.md')

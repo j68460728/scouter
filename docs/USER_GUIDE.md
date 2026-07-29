@@ -4,14 +4,17 @@ Bienvenido a Scouter Engine. Esta guía le ayudará a entender cómo operar el s
 
 ## 1. Funcionamiento del Sistema
 Scouter Engine es una herramienta automatizada que realiza lo siguiente:
-1. **Recolección de Datos:** Descarga en tiempo real los datos más recientes de las principales ligas europeas (Premier League, La Liga, Bundesliga, etc.) desde la API oficial de football-data.org.
-2. **Evaluación:** Aplica una matriz de puntuación configurable (`rules/scoring_matrix.yaml`) para identificar partidos con alto interés competitivo.
-3. **Reporte:** Genera un informe detallado con los partidos seleccionados, su puntuación y la justificación técnica de la selección.
+1. **Recolección de Datos:** Descarga en tiempo real datos de ligas (matches, standings, resultados históricos) desde la API oficial de football-data.org.
+2. **Evaluación:** Construye un perfil de fuerza (0–100) para cada equipo basado en:
+   - **Estructural** (60%): coeficiente de competición, puntos por partido, diferencia de goles de temporada
+   - **Forma reciente** (30%): Goal Superiority Rating (GSR), PPG y promedio de goles en últimos N partidos
+   - **Contexto** (10%): ventaja de localía, fase de la competición
+3. **Reporte:** Genera un informe con la diferencia de fuerza entre equipos y selecciona los partidos más desiguales.
 
 ## 2. Modos de Operación
 El sistema tiene dos modos de ejecución:
-- `rules`: Utiliza una matriz de reglas estricta basada en factores como el nivel de la competición y el prestigio de los equipos. Es totalmente determinista.
-- `ai`: (En desarrollo) Utiliza inteligencia artificial para una interpretación más profunda de los datos.
+- `rules`: **Motor determinista de fuerza**. Compara equipos mediante datos objetivos. Es el modo recomendado.
+- `ai`: (Experimental) Utiliza inteligencia artificial. Independiente del motor de fuerza.
 
 ## 3. Parámetros del Comando
 
@@ -21,8 +24,8 @@ El sistema tiene dos modos de ejecución:
 
 ### --mode (obligatorio)
 Define el motor de evaluación:
-- `rules` → Evaluación por matriz de reglas
-- `ai` → Evaluación por IA (en desarrollo)
+- `rules` → Evaluación por diferencia de fuerza (Team Strength 0–100)
+- `ai` → Evaluación por IA (experimental)
 
 ### --window (opcional)
 Filtra partidos dentro de una ventana de tiempo. Acepta:
@@ -40,47 +43,63 @@ Al ejecutar `./bin/scout analyze --mode rules`, encontrará un informe en `repor
 
 ### Estructura del informe
 ```
-### ⭐ Manchester United FC (Favorito) vs Hull City AFC
+### ⭐ Manchester City FC (Favorito) vs AFC Bournemouth — Diferencia: 15.0 pts
 - **Competición:** Premier League
-- **Fecha/Hora (Colombia):** 2026-08-22 06:30  ← Hora local Colombia (UTC-5)
-- **Puntuación:** 10
-- **Justificación:**
-  - Tier 1 competition (+3)
-  - Historical prestige team (+2)
-  - High squad value (+2)
-  - High ranking coefficient (+2)
-  - Verifiable recent form (+1)
+- **Fecha/Hora (Colombia):** 2026-08-23 08:00     ← Hora local Colombia (UTC-5)
+- **Fuerza local (Manchester City FC):** 54.1/100
+  - Estructural: 48.1/60
+  - Forma reciente: 0.0/30                          ← GSR si hay datos suficientes
+  - Contexto: 6.0/10
+- **Fuerza visitante (AFC Bournemouth):** 39.1/100
+  - Estructural: 38.1/60
+  - Forma reciente: 0.0/30
+  - Contexto: 1.0/10
 ```
 
 ### ⭐ Indicador de Favorito
-Cada partido muestra `⭐ [Equipo] (Favorito)` indicando qué equipo tiene ventaja competitiva basado en:
-- **Prestigio histórico**: Si un equipo tiene más títulos o historia que el otro, ese es el favorito.
-- **Ventaja local**: Si ambos tienen prestigio similar o ninguno lo tiene, el equipo local es el favorito.
+El equipo con mayor `total/100` es marcado como favorito. La determinación es completamente objetiva:
+- No hay listas de equipos "prestigiosos" hardcodeadas
+- El favorito es quien tenga mejor rating compuesto (estructural + forma reciente + contexto)
+- La ventaja de localía aporta hasta 5 puntos dentro del componente de contexto
 
-### ¿Qué significa la puntuación?
-Cada partido recibe una puntuación basada en la suma de criterios definidos en `rules/scoring_matrix.yaml` (máximo 10 puntos):
-- **Umbral:** Partidos con puntuación >= 8 son seleccionados.
-- **Criterios:** Diferencia de categoría (0-3), prestigio histórico (0-2), valor de plantilla (0-2), coeficiente de ranking (0-2), rendimiento reciente (0-1).
-- **Justificación:** El informe desglosa cómo se ha alcanzado dicha puntuación.
+### ¿Qué significa la fuerza (0–100)?
+El rating es la suma ponderada de tres pilares:
+| Pilar | Peso | Componentes |
+|---|---|---|
+| **Estructural** | 60% | Coeficiente de competición (0–25), PPG en liga (0–25), DG de temporada (0–10) |
+| **Forma reciente** | 30% | GSR últimos 6 partidos (0–15), PPG últimos 6 (0–10), promedio de goles (0–5) |
+| **Contexto** | 10% | Ventaja local (0–5), fase de competición (0–5) |
+
+### Criterio de selección
+Se seleccionan partidos donde `abs(fuerza_local - fuerza_visitante) >= 15` puntos. Esto garantiza que solo se reporten encuentros con diferencia significativa.
 
 ### Archivos generados
 | Archivo | Contenido |
 |---|---|
-| `reports/report_rules_*.md` | Informe legible con partidos seleccionados |
+| `reports/report_rules_*.md` | Informe legible con partidos seleccionados y desglose de fuerza |
 | `evidence/evidence_rules_*.json` | Datos crudos de evaluación (trazabilidad) |
 | `logs/execution_rules_*.log` | Registro de auditoría de la ejecución |
 
 ## 5. Solución de Problemas
 - **¿No aparecen partidos en el informe?**
-  - Pruebe sin `--window` para ver todos los partidos disponibles: `./bin/scout analyze --mode rules`
-  - Si ningún partido supera el umbral de 8, intente reducir el threshold en `rules/scoring_matrix.yaml`
+  - Pruebe sin `--window`: `./bin/scout analyze --mode rules`
+  - Si sigue sin resultados, reduzca `confidence.min_difference` en `rules/strength_matrix.yaml`
+  - La forma reciente puede mostrar 0.0 si la temporada no ha iniciado (no hay datos de GSR suficientes)
 - **¿Error 429 (rate limit)?**
   - El sistema espera automáticamente y reintenta. Es normal con la cuenta gratuita (10 req/min).
 - **¿Error de conexión?**
   - Verifique su conexión a internet y que `FOOTBALL_DATA_API_KEY` en `docker-compose.yml` sea válida.
 
 ## 6. Personalización
-Puede ajustar la sensibilidad del análisis modificando `rules/scoring_matrix.yaml`:
+Puede ajustar el comportamiento editando `rules/strength_matrix.yaml`:
 ```yaml
-threshold: 8  # Reduzca para incluir más partidos, aumente para mayor exclusividad
+confidence:
+  min_difference: 15     # Reduzca para incluir más partidos, aumente para mayor exclusividad
+weights:
+  structural: 0.60       # Peso de fuerza estructural
+  recent_form: 0.30      # Peso de forma reciente (incluye GSR)
+  context: 0.10          # Peso de contexto (localía, fase)
+gsr:
+  matches: 6             # Partidos para calcular GSR
+  min_matches: 5         # Mínimo para que GSR sea válido
 ```

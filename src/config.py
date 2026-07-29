@@ -12,3 +12,8 @@ LEAGUES = {
     "SA": "Serie A",
     "FL1": "Ligue 1"
 }
+
+# New strength engine constants
+GSR_MATCHES = 6
+CONFIDENCE_THRESHOLD = 15
+RATE_LIMIT_DELAY = 10  # seconds between requests (free tier: 10 req/min)

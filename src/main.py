@@ -2,10 +2,11 @@ import argparse
 import os
 import sys
 
-from scraper import get_matches
-from evaluator_rules import evaluate_matches_with_rules
+from scraper import get_matches, get_standings, get_competition_results
+from evaluator_strength import evaluate_matches
 from evaluator_ai import evaluate_matches_with_ai
 from reporter import generate_report
+from config import GSR_MATCHES
 
 def parse_window(value):
     if value is None:
@@ -16,12 +17,12 @@ def parse_window(value):
     elif value.endswith('d'):
         return int(value[:-1]) * 24
     else:
-        return int(value) * 24  # default unit: days
+        return int(value) * 24
 
 def main():
-    parser = argparse.ArgumentParser(description="Scouter Engine - Modo Dual")
-    parser.add_argument("--mode", choices=["rules", "ai"], required=True, help="Modo de ejecución: rules o ai")
-    parser.add_argument("--window", type=str, default=None, help="Ventana de tiempo (opcional). Ej: 7d (7 días), 24h (24 horas). Por defecto: días. Sin el parámetro se traen todos los partidos.")
+    parser = argparse.ArgumentParser(description="Scouter Engine")
+    parser.add_argument("--mode", choices=["rules", "ai"], required=True, help="Modo: rules (motor de fuerza determinista) o ai")
+    parser.add_argument("--window", type=str, default=None, help="Ventana de tiempo. Ej: 7d, 24h. Por defecto: días. Sin el parámetro: todos los partidos.")
     
     args = parser.parse_args()
     window_hours = parse_window(args.window)
@@ -36,15 +37,34 @@ def main():
     if not matches:
         print("[Scouter] No hay partidos para analizar. Terminando.")
         sys.exit(0)
-        
-    # 2. Evaluación
-    print("[Scouter] Evaluando partidos...")
-    if args.mode == "rules":
-        evaluated_matches = evaluate_matches_with_rules(matches)
-    else:
+    
+    if args.mode == "ai":
+        print("[Scouter] Evaluando con IA...")
         evaluated_matches = evaluate_matches_with_ai(matches)
+    else:
+        # 2. Obtener standings (posiciones en liga)
+        print("[Scouter] Obteniendo standings...")
+        league_codes = set(m['competition_code'] for m in matches)
+        standings = {}
+        for code in league_codes:
+            standings.update(get_standings(code))
         
-    # 3. Reporte
+        # 3. Obtener resultados recientes por competición (más eficiente que por equipo)
+        print("[Scouter] Obteniendo resultados recientes...")
+        team_results = {}
+        for code in league_codes:
+            results = get_competition_results(code, GSR_MATCHES * 20)
+            for m in results:
+                hid = m['homeTeam']['id']
+                aid = m['awayTeam']['id']
+                team_results.setdefault(hid, []).append(m)
+                team_results.setdefault(aid, []).append(m)
+        
+        # 4. Evaluación por fuerza determinista
+        print("[Scouter] Evaluando partidos por diferencia de fuerza...")
+        evaluated_matches = evaluate_matches(matches, standings, team_results)
+    
+    # 5. Reporte
     print("[Scouter] Generando reporte y evidencias...")
     generate_report(args.mode, evaluated_matches)
     

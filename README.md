@@ -17,7 +17,7 @@ Sistema de análisis deportivo autónomo, reproducible y auditable, diseñado pa
 
 | Parámetro | Obligatorio | Descripción |
 |---|---|---|
-| `--mode` | Sí | Modo de ejecución: `rules` (matriz de reglas) o `ai` (IA, en desarrollo) |
+| `--mode` | Sí | Modo de ejecución: `rules` (evaluación por fuerza determinista) o `ai` (IA, experimental) |
 | `--window` | No | Ventana de tiempo. Ej: `7d` (7 días), `24h` (24 horas). Sin unidad = días. Si se omite, se traen **todos** los partidos disponibles. |
 
 ### Ejemplos
@@ -40,25 +40,28 @@ Sistema de análisis deportivo autónomo, reproducible y auditable, diseñado pa
 
 ### Reporte (`reports/report_rules_YYYYMMDD_HHMMSS.md`)
 Lista los partidos seleccionados con:
-- Equipos local y visitante
+- Equipos local y visitante con **favorito** indicado (⭐)
 - Competición
-- **Fecha/Hora del encuentro** (formato ISO UTC)
-- Puntuación total (umbral >= 8)
-- Justificación desglosada por criterio
+- **Fecha/Hora en Colombia** (UTC-5)
+- **Fuerza de cada equipo** (0–100) con desglose estructural / forma reciente / contexto
+- **Diferencia de fuerza** (umbral mínimo: 15 pts)
 
 ```
-### ⭐ Arsenal FC (Favorito) vs Coventry City FC
+### ⭐ Arsenal FC (Favorito) vs Coventry City FC — Diferencia: 29.9 pts
 - **Competición:** Premier League
 - **Fecha/Hora (Colombia):** 2026-08-21 14:00
-- **Puntuación:** 10
-- **Justificación:**
-  - Tier 1 competition (+3)
-  - Historical prestige team (+2)
-  ...
+- **Fuerza local (Arsenal FC):** 55.9/100
+  - Estructural: 49.9/60
+  - Forma reciente: 0.0/30
+  - Contexto: 6.0/10
+- **Fuerza visitante (Coventry City FC):** 26.0/100
+  - Estructural: 25.0/60
+  - Forma reciente: 0.0/30
+  - Contexto: 1.0/10
 ```
 
 ### Evidencia (`evidence/evidence_rules_YYYYMMDD_HHMMSS.json`)
-Datos crudos en JSON de todos los partidos evaluados con su puntuación y justificación.
+Datos crudos en JSON de todos los partidos evaluados con fuerza, diferencia y desglose.
 
 ### Logs (`logs/execution_rules_YYYYMMDD_HHMMSS.log`)
 Registro de auditoría de la ejecución.
@@ -67,17 +70,18 @@ Registro de auditoría de la ejecución.
 
 - `bin/scout` → Entrypoint (Bash wrapper para Docker)
 - `src/config.py` → Configuración de ligas y API
-- `src/scraper.py` → Consume API REST de football-data.org
-- `src/evaluator_rules.py` → Aplica matriz de puntuación (`rules/scoring_matrix.yaml`)
+- `src/scraper.py` → Consume API REST de football-data.org (matches + standings + resultados)
+- `src/strength_profile.py` → Construye perfil de fuerza del equipo (0–100) desde datos objetivos
+- `src/evaluator_strength.py` → Calcula diferencia de fuerza y selecciona candidatos
 - `src/reporter.py` → Genera reportes Markdown + JSON
-- `rules/scoring_matrix.yaml` → Define criterios y umbral de selección
+- `rules/strength_matrix.yaml` → Pesos, coeficientes, límites de normalización y umbral de selección
 
 ## Personalización
 
-Ajuste el umbral de selección editando `rules/scoring_matrix.yaml`:
-```yaml
-threshold: 8  # Valor mínimo para seleccionar un partido
-```
+Ajuste la sensibilidad del análisis editando `rules/strength_matrix.yaml`:
+- `confidence.min_difference`: Diferencia de fuerza mínima para seleccionar un partido (default: 15)
+- `weights`: Distribución entre estructural (60%), forma reciente (30%) y contexto (10%)
+- `gsr.matches`: Número de partidos para calcular Goal Superiority Rating (default: 6)
 
 ## Guía de Usuario
 
