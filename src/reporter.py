@@ -44,13 +44,11 @@ Fecha: {{ date }}
 - **Competición:** {{ m.match.competition }}
 - **Fecha/Hora (Colombia):** {{ m.colombia_date }}
 - **Fuerza local ({{ m.match.home_team }}):** {{ m.home_strength.total }}/100
-  - Estructural: {{ m.home_strength.structural }}/60
-  - Forma reciente: {{ m.home_strength.recent_form }}/30
-  - Contexto: {{ m.home_strength.context }}/10
+  - Estructural: {{ m.home_strength.structural }}
+  - Contexto: {{ m.home_strength.context }}
 - **Fuerza visitante ({{ m.match.away_team }}):** {{ m.away_strength.total }}/100
-  - Estructural: {{ m.away_strength.structural }}/60
-  - Forma reciente: {{ m.away_strength.recent_form }}/30
-  - Contexto: {{ m.away_strength.context }}/10
+  - Estructural: {{ m.away_strength.structural }}
+  - Contexto: {{ m.away_strength.context }}
 {% endfor %}
 
 ---

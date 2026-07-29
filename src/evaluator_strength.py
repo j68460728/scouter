@@ -29,7 +29,6 @@ def evaluate_matches(matches, standings, team_results):
             "score": round(home['total'] + away['total'], 1),
             "justification": [
                 f"Fuerza estructural: Local {home['structural']} vs Visita {away['structural']}",
-                f"Forma reciente: Local {home['recent_form']} vs Visita {away['recent_form']}",
                 f"Contexto: Local {home['context']} vs Visita {away['context']}",
                 f"Diferencia total: {diff} pts (umbral: {min_diff})"
             ]
