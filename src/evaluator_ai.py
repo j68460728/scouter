@@ -30,11 +30,14 @@ def evaluate_matches_with_ai(matches):
     
     # URL al OmniRoute local. 
     # Al correr en Docker de Linux, host.docker.internal puede requerir config especial,
-    # probaremos con el default de Docker en Linux (172.17.0.1) si host.docker.internal falla.
-    api_base = os.getenv("API_BASE_URL", "http://host.docker.internal:20128/v1")
+    # En modo local (sin Docker), se usa localhost directamente.
+    api_base = os.getenv("API_BASE_URL", "http://localhost:20128/v1")
     ai_model = os.getenv("AI_MODEL", "google/gemini-pro")
+    timeout = int(os.getenv("AI_TIMEOUT", "30"))
     
     print(f"[Scouter-AI] Consultando modelo {ai_model} via {api_base} ...")
+    
+    # Intentar conectar con el servicio de IA
     try:
         response = requests.post(
             f"{api_base}/chat/completions",
@@ -44,7 +47,7 @@ def evaluate_matches_with_ai(matches):
                 "messages": [{"role": "user", "content": prompt}],
                 "temperature": 0.1
             },
-            timeout=30
+            timeout=timeout
         )
         response.raise_for_status()
         data = response.json()
@@ -69,8 +72,31 @@ def evaluate_matches_with_ai(matches):
             })
         return evaluated
         
+    except requests.exceptions.ConnectionError as e:
+        print(f"[Scouter-AI] No se pudo conectar al servicio de IA en {api_base}")
+        print(f"[Scouter-AI] Error: {e}")
+        print("[Scouter-AI] Usando evaluación fallback basada en reglas...")
+        from evaluator_rules import evaluate_matches_with_rules
+        return evaluate_matches_with_rules(matches)
+    except requests.exceptions.HTTPError as e:
+        error_detail = ""
+        if hasattr(e, 'response') and e.response is not None:
+            try:
+                error_detail = e.response.json()
+            except:
+                error_detail = e.response.text
+        print(f"[Error en IA] Error HTTP {e.response.status_code}: {error_detail}")
+        # Si es un error de credenciales o modelo no disponible, usar fallback
+        if e.response.status_code in [401, 403, 404]:
+            print("[Scouter-AI] Servicio de IA no disponible o sin credenciales válidas.")
+            print("[Scouter-AI] Usando evaluación fallback basada en reglas...")
+            from evaluator_rules import evaluate_matches_with_rules
+            return evaluate_matches_with_rules(matches)
+        raise
     except Exception as e:
         print(f"[Error en IA] No se pudo obtener la evaluación: {e}")
         if hasattr(e, 'response') and e.response is not None:
              print(f"Detalle: {e.response.text}")
-        return []
+        print("[Scouter-AI] Usando evaluación fallback basada en reglas...")
+        from evaluator_rules import evaluate_matches_with_rules
+        return evaluate_matches_with_rules(matches)
