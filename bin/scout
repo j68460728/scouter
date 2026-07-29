@@ -6,20 +6,53 @@ set -e
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ACTION=$1
 MODE=""
+USE_DOCKER=${USE_DOCKER:-true}
 
-# Basic parsing for --mode
+# Basic parsing for --mode and optional --no-docker flag
 if [ "$ACTION" == "analyze" ]; then
-    if [ "$2" == "--mode" ] && [ -n "$3" ]; then
-        MODE=$3
-    else
-        echo "Uso: ./bin/scout analyze --mode [rules|ai]"
+    shift
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            --mode)
+                MODE="$2"
+                shift 2
+                ;;
+            --no-docker)
+                USE_DOCKER=false
+                shift
+                ;;
+            *)
+                echo "Opción desconocida: $1"
+                echo "Uso: ./bin/scout analyze --mode [rules|ai] [--no-docker]"
+                exit 1
+                ;;
+        esac
+    done
+    
+    if [ -z "$MODE" ]; then
+        echo "Uso: ./bin/scout analyze --mode [rules|ai] [--no-docker]"
         exit 1
     fi
 else
-    echo "Uso: ./bin/scout analyze --mode [rules|ai]"
+    echo "Uso: ./bin/scout analyze --mode [rules|ai] [--no-docker]"
     exit 1
 fi
 
-echo "[Scouter] Levantando contenedor Docker para modo $MODE..."
 cd "$PROJECT_ROOT"
-docker compose run --rm scouter --mode "$MODE"
+
+if [ "$USE_DOCKER" == "true" ]; then
+    # Check if docker is available
+    if ! command -v docker &> /dev/null; then
+        echo "[Scouter] Docker no está disponible. Ejecutando en modo local..."
+        USE_DOCKER=false
+    fi
+fi
+
+if [ "$USE_DOCKER" == "true" ]; then
+    echo "[Scouter] Levantando contenedor Docker para modo $MODE..."
+    docker compose run --rm scouter --mode "$MODE"
+else
+    echo "[Scouter] Iniciando Motor de Análisis Competitivo en modo: ${MODE^^} (modo local)..."
+    cd "$PROJECT_ROOT/src"
+    python main.py --mode "$MODE"
+fi

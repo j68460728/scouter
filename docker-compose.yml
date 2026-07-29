@@ -16,3 +16,5 @@ services:
       - API_BASE_URL=http://host.docker.internal:20128/v1
       # Model identifier for OmniRoute
       - AI_MODEL=google/gemini-pro
+      # Timeout configuration
+      - AI_TIMEOUT=60
