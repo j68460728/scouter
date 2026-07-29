@@ -40,9 +40,9 @@ Al ejecutar `./bin/scout analyze --mode rules`, encontrará un informe en `repor
 
 ### Estructura del informe
 ```
-### Arsenal FC vs Coventry City FC
+### ⭐ Manchester United FC (Favorito) vs Hull City AFC
 - **Competición:** Premier League
-- **Fecha/Hora:** 2026-08-21T19:00:00Z    ← Fecha exacta del encuentro
+- **Fecha/Hora (Colombia):** 2026-08-22 06:30  ← Hora local Colombia (UTC-5)
 - **Puntuación:** 10
 - **Justificación:**
   - Tier 1 competition (+3)
@@ -51,6 +51,11 @@ Al ejecutar `./bin/scout analyze --mode rules`, encontrará un informe en `repor
   - High ranking coefficient (+2)
   - Verifiable recent form (+1)
 ```
+
+### ⭐ Indicador de Favorito
+Cada partido muestra `⭐ [Equipo] (Favorito)` indicando qué equipo tiene ventaja competitiva basado en:
+- **Prestigio histórico**: Si un equipo tiene más títulos o historia que el otro, ese es el favorito.
+- **Ventaja local**: Si ambos tienen prestigio similar o ninguno lo tiene, el equipo local es el favorito.
 
 ### ¿Qué significa la puntuación?
 Cada partido recibe una puntuación basada en la suma de criterios definidos en `rules/scoring_matrix.yaml` (máximo 10 puntos):

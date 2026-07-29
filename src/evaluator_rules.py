@@ -22,11 +22,17 @@ def evaluate_matches_with_rules(matches):
     
     prestige_teams = [
         "Real Madrid", "FC Barcelona", "Barcelona", "Bayern Munich",
-        "Liverpool", "Manchester City", "Manchester United", "Arsenal FC",
-        "Arsenal", "Chelsea", "Chelsea FC", "Juventus", "AC Milan",
+        "Liverpool", "Manchester City", "Manchester United",
+        "Arsenal", "Chelsea", "Juventus", "AC Milan",
         "Inter Milan", "Paris Saint-Germain", "Ajax", "FC Porto",
         "Benfica", "Atletico Madrid"
     ]
+    
+    def is_prestige(team_name):
+        for p in prestige_teams:
+            if p in team_name or team_name in p:
+                return True
+        return False
     
     for match in matches:
         score = 0
@@ -45,7 +51,9 @@ def evaluate_matches_with_rules(matches):
             justification.append("Lower tier competition (+0)")
             
         # 2. prestige_history (0-2)
-        if match['home_team'] in prestige_teams or match['away_team'] in prestige_teams:
+        home_prestige = is_prestige(match['home_team'])
+        away_prestige = is_prestige(match['away_team'])
+        if home_prestige or away_prestige:
             score += criteria['prestige_history']['max']
             justification.append(f"Historical prestige team (+{criteria['prestige_history']['max']})")
             
@@ -69,13 +77,22 @@ def evaluate_matches_with_rules(matches):
         score += criteria['recent_performance']['max']
         justification.append(f"Verifiable recent form (+{criteria['recent_performance']['max']})")
         
+        # Determine favorite: prestige team wins; if both/none, home gets advantage
+        if home_prestige and not away_prestige:
+            favorite = match['home_team']
+        elif away_prestige and not home_prestige:
+            favorite = match['away_team']
+        else:
+            favorite = match['home_team']  # home advantage
+        
         selected = score >= threshold
         
         evaluated.append({
             "match": match,
             "score": score,
             "justification": justification,
-            "selected": selected
+            "selected": selected,
+            "favorite": favorite
         })
         
     return evaluated

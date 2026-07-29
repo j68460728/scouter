@@ -47,9 +47,9 @@ Lista los partidos seleccionados con:
 - Justificación desglosada por criterio
 
 ```
-### Arsenal FC vs Coventry City FC
+### ⭐ Arsenal FC (Favorito) vs Coventry City FC
 - **Competición:** Premier League
-- **Fecha/Hora:** 2026-08-21T19:00:00Z
+- **Fecha/Hora (Colombia):** 2026-08-21 14:00
 - **Puntuación:** 10
 - **Justificación:**
   - Tier 1 competition (+3)

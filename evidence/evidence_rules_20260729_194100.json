@@ -1,0 +1,1182 @@
+[
+  {
+    "match": {
+      "id": "560542",
+      "home_team": "Arsenal FC",
+      "away_team": "Coventry City FC",
+      "competition": "Premier League",
+      "date": "2026-08-21T19:00:00Z"
+    },
+    "score": 10,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "Historical prestige team (+2)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Arsenal FC"
+  },
+  {
+    "match": {
+      "id": "560543",
+      "home_team": "Hull City AFC",
+      "away_team": "Manchester United FC",
+      "competition": "Premier League",
+      "date": "2026-08-22T11:30:00Z"
+    },
+    "score": 10,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "Historical prestige team (+2)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Manchester United FC"
+  },
+  {
+    "match": {
+      "id": "560544",
+      "home_team": "Ipswich Town FC",
+      "away_team": "Sunderland AFC",
+      "competition": "Premier League",
+      "date": "2026-08-22T14:00:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Ipswich Town FC"
+  },
+  {
+    "match": {
+      "id": "560545",
+      "home_team": "Nottingham Forest FC",
+      "away_team": "Leeds United FC",
+      "competition": "Premier League",
+      "date": "2026-08-22T14:00:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Nottingham Forest FC"
+  },
+  {
+    "match": {
+      "id": "560546",
+      "home_team": "Everton FC",
+      "away_team": "Crystal Palace FC",
+      "competition": "Premier League",
+      "date": "2026-08-22T14:00:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Everton FC"
+  },
+  {
+    "match": {
+      "id": "560547",
+      "home_team": "Brentford FC",
+      "away_team": "Tottenham Hotspur FC",
+      "competition": "Premier League",
+      "date": "2026-08-22T16:30:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Brentford FC"
+  },
+  {
+    "match": {
+      "id": "560548",
+      "home_team": "Manchester City FC",
+      "away_team": "AFC Bournemouth",
+      "competition": "Premier League",
+      "date": "2026-08-23T13:00:00Z"
+    },
+    "score": 10,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "Historical prestige team (+2)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Manchester City FC"
+  },
+  {
+    "match": {
+      "id": "560549",
+      "home_team": "Brighton & Hove Albion FC",
+      "away_team": "Aston Villa FC",
+      "competition": "Premier League",
+      "date": "2026-08-23T13:00:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Brighton & Hove Albion FC"
+  },
+  {
+    "match": {
+      "id": "560550",
+      "home_team": "Newcastle United FC",
+      "away_team": "Liverpool FC",
+      "competition": "Premier League",
+      "date": "2026-08-23T15:30:00Z"
+    },
+    "score": 10,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "Historical prestige team (+2)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Liverpool FC"
+  },
+  {
+    "match": {
+      "id": "561761",
+      "home_team": "Wolverhampton Wanderers FC",
+      "away_team": "Blackburn Rovers FC",
+      "competition": "Championship",
+      "date": "2026-08-14T19:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Wolverhampton Wanderers FC"
+  },
+  {
+    "match": {
+      "id": "561762",
+      "home_team": "Bolton Wanderers FC",
+      "away_team": "Preston North End FC",
+      "competition": "Championship",
+      "date": "2026-08-15T11:30:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Bolton Wanderers FC"
+  },
+  {
+    "match": {
+      "id": "561763",
+      "home_team": "Norwich City FC",
+      "away_team": "West Bromwich Albion FC",
+      "competition": "Championship",
+      "date": "2026-08-15T14:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Norwich City FC"
+  },
+  {
+    "match": {
+      "id": "561764",
+      "home_team": "Bristol City FC",
+      "away_team": "Millwall FC",
+      "competition": "Championship",
+      "date": "2026-08-15T14:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Bristol City FC"
+  },
+  {
+    "match": {
+      "id": "561765",
+      "home_team": "Middlesbrough FC",
+      "away_team": "Lincoln City FC",
+      "competition": "Championship",
+      "date": "2026-08-15T14:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Middlesbrough FC"
+  },
+  {
+    "match": {
+      "id": "561766",
+      "home_team": "Stoke City FC",
+      "away_team": "Swansea City AFC",
+      "competition": "Championship",
+      "date": "2026-08-15T14:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Stoke City FC"
+  },
+  {
+    "match": {
+      "id": "561767",
+      "home_team": "Charlton Athletic FC",
+      "away_team": "Derby County FC",
+      "competition": "Championship",
+      "date": "2026-08-15T14:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Charlton Athletic FC"
+  },
+  {
+    "match": {
+      "id": "561768",
+      "home_team": "Portsmouth FC",
+      "away_team": "Queens Park Rangers FC",
+      "competition": "Championship",
+      "date": "2026-08-15T14:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Portsmouth FC"
+  },
+  {
+    "match": {
+      "id": "561769",
+      "home_team": "Sheffield United FC",
+      "away_team": "Birmingham City FC",
+      "competition": "Championship",
+      "date": "2026-08-15T16:30:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Sheffield United FC"
+  },
+  {
+    "match": {
+      "id": "561770",
+      "home_team": "Watford FC",
+      "away_team": "Southampton FC",
+      "competition": "Championship",
+      "date": "2026-08-16T12:30:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Watford FC"
+  },
+  {
+    "match": {
+      "id": "561771",
+      "home_team": "Burnley FC",
+      "away_team": "West Ham United FC",
+      "competition": "Championship",
+      "date": "2026-08-16T15:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Burnley FC"
+  },
+  {
+    "match": {
+      "id": "561772",
+      "home_team": "Cardiff City FC",
+      "away_team": "Wrexham AFC",
+      "competition": "Championship",
+      "date": "2026-08-17T19:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Cardiff City FC"
+  },
+  {
+    "match": {
+      "id": "561773",
+      "home_team": "Birmingham City FC",
+      "away_team": "Bristol City FC",
+      "competition": "Championship",
+      "date": "2026-08-22T11:30:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Birmingham City FC"
+  },
+  {
+    "match": {
+      "id": "561781",
+      "home_team": "Lincoln City FC",
+      "away_team": "Portsmouth FC",
+      "competition": "Championship",
+      "date": "2026-08-22T11:30:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Lincoln City FC"
+  },
+  {
+    "match": {
+      "id": "561784",
+      "home_team": "Millwall FC",
+      "away_team": "Norwich City FC",
+      "competition": "Championship",
+      "date": "2026-08-22T11:30:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Millwall FC"
+  },
+  {
+    "match": {
+      "id": "561774",
+      "home_team": "Swansea City AFC",
+      "away_team": "Sheffield United FC",
+      "competition": "Championship",
+      "date": "2026-08-22T14:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Swansea City AFC"
+  },
+  {
+    "match": {
+      "id": "561775",
+      "home_team": "West Ham United FC",
+      "away_team": "Charlton Athletic FC",
+      "competition": "Championship",
+      "date": "2026-08-22T14:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "West Ham United FC"
+  },
+  {
+    "match": {
+      "id": "561777",
+      "home_team": "Derby County FC",
+      "away_team": "Cardiff City FC",
+      "competition": "Championship",
+      "date": "2026-08-22T14:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Derby County FC"
+  },
+  {
+    "match": {
+      "id": "561778",
+      "home_team": "Preston North End FC",
+      "away_team": "Wolverhampton Wanderers FC",
+      "competition": "Championship",
+      "date": "2026-08-22T14:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Preston North End FC"
+  },
+  {
+    "match": {
+      "id": "561779",
+      "home_team": "Wrexham AFC",
+      "away_team": "Watford FC",
+      "competition": "Championship",
+      "date": "2026-08-22T14:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Wrexham AFC"
+  },
+  {
+    "match": {
+      "id": "561780",
+      "home_team": "Blackburn Rovers FC",
+      "away_team": "Middlesbrough FC",
+      "competition": "Championship",
+      "date": "2026-08-22T14:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Blackburn Rovers FC"
+  },
+  {
+    "match": {
+      "id": "561782",
+      "home_team": "Southampton FC",
+      "away_team": "Stoke City FC",
+      "competition": "Championship",
+      "date": "2026-08-22T14:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Southampton FC"
+  },
+  {
+    "match": {
+      "id": "561783",
+      "home_team": "Queens Park Rangers FC",
+      "away_team": "Bolton Wanderers FC",
+      "competition": "Championship",
+      "date": "2026-08-22T14:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "Queens Park Rangers FC"
+  },
+  {
+    "match": {
+      "id": "561776",
+      "home_team": "West Bromwich Albion FC",
+      "away_team": "Burnley FC",
+      "competition": "Championship",
+      "date": "2026-08-23T11:00:00Z"
+    },
+    "score": 4,
+    "justification": [
+      "Tier 2 competition (+1)",
+      "Medium squad value (+1)",
+      "Medium ranking coefficient (+1)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": false,
+    "favorite": "West Bromwich Albion FC"
+  },
+  {
+    "match": {
+      "id": "564634",
+      "home_team": "Deportivo Alav\u00e9s",
+      "away_team": "Getafe CF",
+      "competition": "La Liga",
+      "date": "2026-08-15T17:30:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Deportivo Alav\u00e9s"
+  },
+  {
+    "match": {
+      "id": "564633",
+      "home_team": "Sevilla FC",
+      "away_team": "Rayo Vallecano de Madrid",
+      "competition": "La Liga",
+      "date": "2026-08-15T19:30:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Sevilla FC"
+  },
+  {
+    "match": {
+      "id": "564629",
+      "home_team": "Real Racing Club de Santander",
+      "away_team": "Villarreal CF",
+      "competition": "La Liga",
+      "date": "2026-08-16T15:00:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Real Racing Club de Santander"
+  },
+  {
+    "match": {
+      "id": "564632",
+      "home_team": "RCD Espanyol de Barcelona",
+      "away_team": "Levante UD",
+      "competition": "La Liga",
+      "date": "2026-08-16T17:00:00Z"
+    },
+    "score": 10,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "Historical prestige team (+2)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "RCD Espanyol de Barcelona"
+  },
+  {
+    "match": {
+      "id": "564636",
+      "home_team": "RC Celta de Vigo",
+      "away_team": "CA Osasuna",
+      "competition": "La Liga",
+      "date": "2026-08-16T19:30:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "RC Celta de Vigo"
+  },
+  {
+    "match": {
+      "id": "564635",
+      "home_team": "RC Deportivo La Coru\u00f1a",
+      "away_team": "Elche CF",
+      "competition": "La Liga",
+      "date": "2026-08-17T19:00:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "RC Deportivo La Coru\u00f1a"
+  },
+  {
+    "match": {
+      "id": "564628",
+      "home_team": "Club Atl\u00e9tico de Madrid",
+      "away_team": "M\u00e1laga CF",
+      "competition": "La Liga",
+      "date": "2026-08-19T19:00:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Club Atl\u00e9tico de Madrid"
+  },
+  {
+    "match": {
+      "id": "564638",
+      "home_team": "Rayo Vallecano de Madrid",
+      "away_team": "Deportivo Alav\u00e9s",
+      "competition": "La Liga",
+      "date": "2026-08-20T19:00:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Rayo Vallecano de Madrid"
+  },
+  {
+    "match": {
+      "id": "564647",
+      "home_team": "Real Betis Balompi\u00e9",
+      "away_team": "Real Sociedad de F\u00fatbol",
+      "competition": "La Liga",
+      "date": "2026-08-21T19:00:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Real Betis Balompi\u00e9"
+  },
+  {
+    "match": {
+      "id": "564641",
+      "home_team": "Athletic Club",
+      "away_team": "Sevilla FC",
+      "competition": "La Liga",
+      "date": "2026-08-22T15:00:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Athletic Club"
+  },
+  {
+    "match": {
+      "id": "564643",
+      "home_team": "Valencia CF",
+      "away_team": "RC Celta de Vigo",
+      "competition": "La Liga",
+      "date": "2026-08-22T17:30:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Valencia CF"
+  },
+  {
+    "match": {
+      "id": "564645",
+      "home_team": "RCD Espanyol de Barcelona",
+      "away_team": "Real Madrid CF",
+      "competition": "La Liga",
+      "date": "2026-08-22T19:30:00Z"
+    },
+    "score": 10,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "Historical prestige team (+2)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "RCD Espanyol de Barcelona"
+  },
+  {
+    "match": {
+      "id": "564646",
+      "home_team": "Club Atl\u00e9tico de Madrid",
+      "away_team": "Villarreal CF",
+      "competition": "La Liga",
+      "date": "2026-08-23T15:00:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Club Atl\u00e9tico de Madrid"
+  },
+  {
+    "match": {
+      "id": "564644",
+      "home_team": "Getafe CF",
+      "away_team": "Real Racing Club de Santander",
+      "competition": "La Liga",
+      "date": "2026-08-23T17:30:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Getafe CF"
+  },
+  {
+    "match": {
+      "id": "564642",
+      "home_team": "Elche CF",
+      "away_team": "FC Barcelona",
+      "competition": "La Liga",
+      "date": "2026-08-23T19:30:00Z"
+    },
+    "score": 10,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "Historical prestige team (+2)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "FC Barcelona"
+  },
+  {
+    "match": {
+      "id": "558629",
+      "home_team": "Udinese Calcio",
+      "away_team": "Como 1907",
+      "competition": "Serie A",
+      "date": "2026-08-22T16:30:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Udinese Calcio"
+  },
+  {
+    "match": {
+      "id": "558632",
+      "home_team": "FC Internazionale Milano",
+      "away_team": "AC Monza",
+      "competition": "Serie A",
+      "date": "2026-08-22T16:30:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "FC Internazionale Milano"
+  },
+  {
+    "match": {
+      "id": "558631",
+      "home_team": "Genoa CFC",
+      "away_team": "SSC Napoli",
+      "competition": "Serie A",
+      "date": "2026-08-22T18:45:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Genoa CFC"
+  },
+  {
+    "match": {
+      "id": "558636",
+      "home_team": "Parma Calcio 1913",
+      "away_team": "Cagliari Calcio",
+      "competition": "Serie A",
+      "date": "2026-08-22T18:45:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Parma Calcio 1913"
+  },
+  {
+    "match": {
+      "id": "558635",
+      "home_team": "Frosinone Calcio",
+      "away_team": "Juventus FC",
+      "competition": "Serie A",
+      "date": "2026-08-23T16:30:00Z"
+    },
+    "score": 10,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "Historical prestige team (+2)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Juventus FC"
+  },
+  {
+    "match": {
+      "id": "558637",
+      "home_team": "Venezia FC",
+      "away_team": "US Lecce",
+      "competition": "Serie A",
+      "date": "2026-08-23T16:30:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Venezia FC"
+  },
+  {
+    "match": {
+      "id": "558633",
+      "home_team": "Atalanta BC",
+      "away_team": "US Sassuolo Calcio",
+      "competition": "Serie A",
+      "date": "2026-08-23T18:45:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Atalanta BC"
+  },
+  {
+    "match": {
+      "id": "558634",
+      "home_team": "Torino FC",
+      "away_team": "AC Milan",
+      "competition": "Serie A",
+      "date": "2026-08-23T18:45:00Z"
+    },
+    "score": 10,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "Historical prestige team (+2)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "AC Milan"
+  },
+  {
+    "match": {
+      "id": "559715",
+      "home_team": "Olympique de Marseille",
+      "away_team": "RC Strasbourg Alsace",
+      "competition": "Ligue 1",
+      "date": "2026-08-21T18:45:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Olympique de Marseille"
+  },
+  {
+    "match": {
+      "id": "559712",
+      "home_team": "Racing Club de Lens",
+      "away_team": "AJ Auxerre",
+      "competition": "Ligue 1",
+      "date": "2026-08-22T15:15:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Racing Club de Lens"
+  },
+  {
+    "match": {
+      "id": "559711",
+      "home_team": "Le Mans FC",
+      "away_team": "Stade Brestois 29",
+      "competition": "Ligue 1",
+      "date": "2026-08-22T18:45:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Le Mans FC"
+  },
+  {
+    "match": {
+      "id": "559714",
+      "home_team": "ES Troyes AC",
+      "away_team": "Paris FC",
+      "competition": "Ligue 1",
+      "date": "2026-08-22T18:45:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "ES Troyes AC"
+  },
+  {
+    "match": {
+      "id": "559716",
+      "home_team": "OGC Nice",
+      "away_team": "FC Lorient",
+      "competition": "Ligue 1",
+      "date": "2026-08-22T18:45:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "OGC Nice"
+  },
+  {
+    "match": {
+      "id": "559718",
+      "home_team": "Toulouse FC",
+      "away_team": "Olympique Lyonnais",
+      "competition": "Ligue 1",
+      "date": "2026-08-22T18:45:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Toulouse FC"
+  },
+  {
+    "match": {
+      "id": "559717",
+      "home_team": "Angers SCO",
+      "away_team": "Lille OSC",
+      "competition": "Ligue 1",
+      "date": "2026-08-23T13:00:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Angers SCO"
+  },
+  {
+    "match": {
+      "id": "559719",
+      "home_team": "Le Havre AC",
+      "away_team": "AS Monaco FC",
+      "competition": "Ligue 1",
+      "date": "2026-08-23T15:15:00Z"
+    },
+    "score": 8,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Le Havre AC"
+  },
+  {
+    "match": {
+      "id": "559713",
+      "home_team": "Paris Saint-Germain FC",
+      "away_team": "Stade Rennais FC 1901",
+      "competition": "Ligue 1",
+      "date": "2026-08-23T18:45:00Z"
+    },
+    "score": 10,
+    "justification": [
+      "Tier 1 competition (+3)",
+      "Historical prestige team (+2)",
+      "High squad value (+2)",
+      "High ranking coefficient (+2)",
+      "Verifiable recent form (+1)"
+    ],
+    "selected": true,
+    "favorite": "Paris Saint-Germain FC"
+  }
+]

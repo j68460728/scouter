@@ -1,7 +1,16 @@
 import os
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from jinja2 import Environment, FileSystemLoader
+
+COLOMBIA_OFFSET = -5  # UTC-5
+
+def utc_to_colombia(utc_str):
+    if not utc_str:
+        return ""
+    dt = datetime.strptime(utc_str, '%Y-%m-%dT%H:%M:%SZ')
+    col_dt = dt + timedelta(hours=COLOMBIA_OFFSET)
+    return col_dt.strftime('%Y-%m-%d %H:%M')
 
 def generate_report(mode, evaluated_matches):
     base_dir = os.path.dirname(os.path.dirname(__file__))
@@ -18,7 +27,6 @@ def generate_report(mode, evaluated_matches):
         json.dump(evaluated_matches, f, indent=2)
         
     # 2. Generar Reporte con Jinja2
-    # Check if template exists, if not create a fallback template inline
     template_path = os.path.join(templates_dir, 'report_template.md')
     if not os.path.exists(template_path):
         os.makedirs(templates_dir, exist_ok=True)
@@ -31,9 +39,9 @@ Fecha: {{ date }}
 ## Partidos Seleccionados (Umbral >= 8): {{ selected | length }}
 
 {% for match in selected %}
-### {{ match.match.home_team }} vs {{ match.match.away_team }}
+### ⭐ {{ match.favorite_label }} (Favorito) vs {{ match.rival_label }}
 - **Competición:** {{ match.match.competition }}
-- **Fecha/Hora:** {{ match.match.date }}
+- **Fecha/Hora (Colombia):** {{ match.colombia_date }}
 - **Puntuación:** {{ match.score }}
 - **Justificación:**
 {% for j in match.justification %}  - {{ j }}
@@ -48,6 +56,16 @@ Fecha: {{ date }}
     template = env.get_template('report_template.md')
     
     selected_matches = [m for m in evaluated_matches if m['selected']]
+    
+    # Pre-process selected matches: convert dates, determine favorite/rival
+    for m in selected_matches:
+        m['colombia_date'] = utc_to_colombia(m['match'].get('date', ''))
+        if m['match']['home_team'] == m['favorite']:
+            m['favorite_label'] = m['match']['home_team']
+            m['rival_label'] = m['match']['away_team']
+        else:
+            m['favorite_label'] = m['match']['away_team']
+            m['rival_label'] = m['match']['home_team']
     
     markdown_output = template.render(
         mode=mode,
