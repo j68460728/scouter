@@ -1,0 +1,14 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+.next/
+data/*.sqlite
+*.egg-info/
+dist/
+.pytest_cache/
+backtest_results_*.json
+logs/
+reports/
+evidence/

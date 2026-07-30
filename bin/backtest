@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+"""Backtesting entrypoint for the Scouter Engine v2 - Structural + Context only."""
+
+import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(__file__)), 'src'))
+
+from backtesting.engine import run_backtest, save_results
+from backtesting.metrics import compute_metrics, print_report
+
+def main():
+    print("[Backtest] Scouter Engine v2 - Structural + Context only")
+    print("[Backtest] Leagues: PL, BL1, PD, SA, FL1")
+    print("[Backtest] Seasons: 2023/24, 2024/25\n")
+
+    rows = run_backtest()
+
+    if not rows:
+        print("[Backtest] No data collected. Aborting.")
+        sys.exit(1)
+
+    path = save_results(rows)
+    metrics = compute_metrics(rows)
+    print_report(metrics)
+
+    print(f"[Backtest] Results saved to {path}")
+    print("[Backtest] Done.")
+
+if __name__ == "__main__":
+    main()

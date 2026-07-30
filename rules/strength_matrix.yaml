@@ -1,0 +1,28 @@
+weights:
+  structural:
+    weight: 0.857
+    competition_coefficient: 35.7
+    points_per_game: 35.7
+    season_goal_difference: 14.3
+  context:
+    weight: 0.143
+    home_advantage: 7.1
+    competition_stage: 7.2
+
+confidence:
+  min_difference: 20
+
+competition_coefficients:
+  PL: 25
+  BL1: 23
+  PD: 22
+  SA: 21
+  FL1: 20
+  ELC: 15
+
+normalization:
+  max_ppg: 3.0
+  max_season_gd: 70
+  stage_knockout: 5
+  stage_group: 3
+  stage_regular: 1
