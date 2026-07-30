@@ -75,16 +75,25 @@ export default function MatchPage() {
           
           <div className="flex items-center justify-center gap-8 md:gap-16 w-full">
             <div className="flex-1 text-right">
-              <h1 className="text-2xl md:text-4xl font-bold text-slate-200 tracking-tight">
-                {match.home_team.name}
-              </h1>
+              <Link href={`/teams/${match.home_team.id}`} className="hover:text-cyan-400 hover:underline transition-colors">
+                <h1 className="text-2xl md:text-4xl font-bold tracking-tight">
+                  {match.home_team.name}
+                </h1>
+              </Link>
             </div>
             
             <div className="flex flex-col items-center px-4">
               <span className="text-sm font-bold text-slate-600 uppercase tracking-widest mb-1">vs</span>
               {match.status === "FINISHED" ? (
-                <div className="rounded-lg bg-slate-800 px-4 py-2 text-2xl font-bold text-white shadow-inner border border-slate-700/50">
-                  {match.home_score} - {match.away_score}
+                <div className="flex flex-col items-center gap-1.5">
+                  <div className="rounded-lg bg-slate-800 px-4 py-2 text-2xl font-bold text-white shadow-inner border border-slate-700/50">
+                    {match.home_score} - {match.away_score}
+                  </div>
+                  {ev && ev.correct !== null && (
+                    <span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded ${ev.correct ? 'bg-emerald-950/80 text-emerald-400 border border-emerald-900/40' : 'bg-red-950/80 text-red-400 border border-red-900/40'}`}>
+                      {ev.correct ? "Predicción Acertada" : "Predicción Fallida"}
+                    </span>
+                  )}
                 </div>
               ) : (
                 <span className="text-sm text-slate-500">{formatDateTime(match.utc_date)}</span>
@@ -92,9 +101,11 @@ export default function MatchPage() {
             </div>
 
             <div className="flex-1 text-left">
-              <h1 className="text-2xl md:text-4xl font-bold text-slate-200 tracking-tight">
-                {match.away_team.name}
-              </h1>
+              <Link href={`/teams/${match.away_team.id}`} className="hover:text-cyan-400 hover:underline transition-colors">
+                <h1 className="text-2xl md:text-4xl font-bold tracking-tight">
+                  {match.away_team.name}
+                </h1>
+              </Link>
             </div>
           </div>
         </div>
@@ -139,7 +150,9 @@ export default function MatchPage() {
             {/* HOME TEAM */}
             <div className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/30 p-6 shadow-sm">
               <div className="mb-6 flex items-center justify-between border-b border-slate-800/50 pb-4">
-                <h3 className="text-lg font-semibold text-slate-200">{match.home_team.name}</h3>
+                <Link href={`/teams/${match.home_team.id}`} className="hover:text-cyan-400 hover:underline transition-colors">
+                  <h3 className="text-lg font-semibold">{match.home_team.name}</h3>
+                </Link>
                 <span className="font-mono text-xl font-bold text-cyan-400">{ev.strength_home.total.toFixed(1)}</span>
               </div>
               <div className="space-y-4">
@@ -151,7 +164,9 @@ export default function MatchPage() {
             {/* AWAY TEAM */}
             <div className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/30 p-6 shadow-sm">
               <div className="mb-6 flex items-center justify-between border-b border-slate-800/50 pb-4">
-                <h3 className="text-lg font-semibold text-slate-200">{match.away_team.name}</h3>
+                <Link href={`/teams/${match.away_team.id}`} className="hover:text-cyan-400 hover:underline transition-colors">
+                  <h3 className="text-lg font-semibold">{match.away_team.name}</h3>
+                </Link>
                 <span className="font-mono text-xl font-bold text-cyan-400">{ev.strength_away.total.toFixed(1)}</span>
               </div>
               <div className="space-y-4">

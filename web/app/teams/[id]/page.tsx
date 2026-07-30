@@ -57,6 +57,9 @@ export default function TeamPage() {
       <div className="flex flex-col gap-2">
         <h1 className="text-3xl md:text-5xl font-bold text-slate-200 tracking-tight">{team.name}</h1>
         {team.short_name && <p className="text-lg text-slate-400">{team.short_name}</p>}
+        <p className="text-xs text-slate-500 max-w-xl">
+          Utiliza esta trayectoria histórica para contrastar el rendimiento a largo plazo de {team.name} y validar la solidez del desequilibrio competitivo identificado por el motor.
+        </p>
       </div>
 
       {currentSeason && (

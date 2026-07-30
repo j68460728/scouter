@@ -47,6 +47,8 @@ def list_matches(
             status=r["status"],
             home_team_name=r["home_team_name"],
             away_team_name=r["away_team_name"],
+            home_team_id=r.get("home_team_id"),
+            away_team_id=r.get("away_team_id"),
             home_score=r.get("home_score"),
             away_score=r.get("away_score"),
             difference=ev["difference"] if ev else None,

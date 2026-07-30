@@ -461,13 +461,15 @@ class ScouterDB:
         engine = dict(ev) if ev else None
 
         last_sync = self.get_metadata("last_sync")
+        engine_id = engine["id"] if engine else -1
 
         counts = self._conn.execute(
             """SELECT
                    (SELECT COUNT(*) FROM matches) AS matches,
                    (SELECT COUNT(*) FROM teams) AS teams,
                    (SELECT COUNT(*) FROM competitions) AS competitions,
-                   (SELECT COUNT(*) FROM matches WHERE status = 'SCHEDULED') AS pending"""
+                   (SELECT COUNT(*) FROM matches WHERE id NOT IN (SELECT match_id FROM evaluations WHERE engine_version_id = ?)) AS pending""",
+            (engine_id,)
         ).fetchone()
 
         current_season = self._conn.execute(

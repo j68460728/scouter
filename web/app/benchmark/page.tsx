@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowLeft, CheckCircle2, AlertCircle, Activity, ShieldCheck, Target, ChevronRight } from "lucide-react";
+import { ArrowLeft, CheckCircle2, AlertCircle, Activity, ShieldCheck, Target, ChevronRight, Info } from "lucide-react";
 import Link from "next/link";
 import {
   getBenchmark, getCompetitions, getSeasons, getSystemStatus,
@@ -130,6 +130,18 @@ export default function BenchmarkPage() {
                 <ProgressBar value={t.baseline_home} label="Baseline (Victoria Local)" colorClass="bg-slate-500" />
               </div>
             </div>
+
+            {!isValidated && (
+              <div className="relative z-10 mt-6 flex items-start gap-3 rounded-lg border border-cyan-800/50 bg-cyan-950/30 p-4 text-sm text-cyan-200">
+                <Info className="h-5 w-5 text-cyan-400 shrink-0 mt-0.5" />
+                <p>
+                  <strong>¿Por qué el modelo requiere revisión?</strong> La precisión observada ({ (t.accuracy * 100).toFixed(1) }%) es inferior al umbral oficial del 65%. 
+                  Esto ocurre frecuentemente al evaluar la base de datos "en vivo" debido a la muestra incompleta de la temporada actual. 
+                  Para replicar el <span className="font-mono text-cyan-400">68.9%</span> del benchmark oficial, se requiere cargar el dataset histórico (CSV) 
+                  de backtesting que contiene 2 temporadas completas y 5 ligas OOS (Out of Sample).
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">

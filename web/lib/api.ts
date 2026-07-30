@@ -1,15 +1,42 @@
-const BASE = "http://localhost:15901";
+const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:15901";
 
-async function fetchJSON<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${BASE}${path}`, {
-    headers: { "Content-Type": "application/json", ...init?.headers },
-    ...init,
-  });
-  if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(`${res.status} ${res.statusText}: ${text}`);
+async function fetchJSON<T>(path: string, init?: RequestInit & { timeoutMs?: number }): Promise<T> {
+  const { timeoutMs = 15000, ...fetchInit } = init || {};
+  
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const res = await fetch(`${BASE}${path}`, {
+      headers: { "Content-Type": "application/json", ...fetchInit?.headers },
+      signal: controller.signal,
+      ...fetchInit,
+    });
+    
+    clearTimeout(id);
+    
+    if (!res.ok) {
+      let msg = res.statusText;
+      try {
+        const data = await res.json();
+        if (data.detail) msg = typeof data.detail === "string" ? data.detail : JSON.stringify(data.detail);
+      } catch (e) {
+        // Not JSON
+      }
+      throw new Error(`API Error (${res.status}): ${msg}`);
+    }
+    
+    return await res.json();
+  } catch (err: any) {
+    clearTimeout(id);
+    if (err.name === "AbortError") {
+      throw new Error("La petición tardó demasiado y fue cancelada (Timeout).");
+    }
+    if (err.message === "Failed to fetch") {
+      throw new Error("No se pudo conectar con el servidor (API Offline o inaccesible).");
+    }
+    throw err;
   }
-  return res.json();
 }
 
 // ── types matching FastAPI schemas ──────────────────────────────────
@@ -68,6 +95,8 @@ export interface MatchSummary {
   status: string;
   home_team_name: string;
   away_team_name: string;
+  home_team_id?: number;
+  away_team_id?: number;
   home_score?: number;
   away_score?: number;
   difference?: number;
