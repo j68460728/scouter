@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, BackgroundTasks
 
 from data.store import ScouterDB
 from data.evaluator import EvaluationRunner
@@ -10,16 +10,21 @@ from api.schemas import SyncResponse, EvaluateResponse
 
 router = APIRouter(prefix="/api", tags=["operations"])
 
+def run_sync_background(db_path: str):
+    try:
+        sync_all(db_path=db_path)
+        db = ScouterDB(db_path)
+        db.set_metadata("last_sync", datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
+        db.close()
+    except Exception as e:
+        print(f"Error en sync background: {e}")
 
 @router.post("/sync", response_model=SyncResponse)
-def sync(db: ScouterDB = Depends(get_db)):
-    result = sync_all(db_path=db._db_path)
-    db.set_metadata("last_sync", datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
-    db2 = ScouterDB(db._db_path)
-    db2.close()
+def sync(background_tasks: BackgroundTasks, db: ScouterDB = Depends(get_db)):
+    background_tasks.add_task(run_sync_background, db._db_path)
     return SyncResponse(
         status="ok",
-        leagues=result,
+        leagues={},
     )
 
 

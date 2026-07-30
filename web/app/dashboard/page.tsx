@@ -54,26 +54,28 @@ export default function Dashboard() {
   const handleSync = async () => {
     setSyncing(true);
     setSyncProgress(0);
-    
-    // Simulate progress while syncing (approx 2 minutes)
-    const interval = setInterval(() => {
-      setSyncProgress(p => {
-        if (p >= 95) return p;
-        return p + Math.random() * 2;
-      });
-    }, 1000);
 
     try {
-      await postSync();
-      setSyncProgress(100);
-      setTimeout(() => setSyncing(false), 500);
-      await loadAll();
+      await postSync(); // Responde de inmediato porque corre en background
+      
+      // Simular progreso por ~2 minutos (120 segundos)
+      let progress = 0;
+      const interval = setInterval(async () => {
+        progress += 100 / 120; // 1% por 1.2s aprox
+        if (progress >= 100) {
+          clearInterval(interval);
+          setSyncProgress(100);
+          setSyncing(false);
+          await loadAll();
+        } else {
+          setSyncProgress(progress);
+          // Refrescar status en background
+          getSystemStatus().then(setStatus).catch(() => {});
+        }
+      }, 1000);
     } catch (e) {
-      clearInterval(interval);
       setSyncing(false);
-      alert("Error sincronizando: " + (e as Error).message);
-    } finally {
-      clearInterval(interval);
+      alert("Error iniciando sincronización: " + (e as Error).message);
     }
   };
 
