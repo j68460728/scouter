@@ -1,18 +1,47 @@
+x-scouter-base: &scouter-base
+  build: .
+  volumes:
+    - .:/app
+    - ./reports:/app/reports
+    - ./evidence:/app/evidence
+    - ./logs:/app/logs
+    - ./rules:/app/rules
+  extra_hosts:
+    - "host.docker.internal:host-gateway"
+  environment:
+    # URL to reach OmniRoute running on the host
+    - API_BASE_URL=http://host.docker.internal:20128/v1
+    # Model identifier for OmniRoute
+    - AI_MODEL=google/gemini-pro
+    # Football Data API Key
+    - FOOTBALL_DATA_API_KEY=41d9a55df11e436f9fe5b90a76c8fc48
+    # Python path for module resolution
+    - PYTHONPATH=/app/src
+
 services:
   scouter:
-    build: .
+    <<: *scouter-base
+    entrypoint: ["python", "src/main.py"]
+    profiles: ["cli"]
+
+  api:
+    <<: *scouter-base
+    entrypoint: ["python", "-m", "uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    ports:
+      - "15901:8000"
+
+  web:
+    image: node:20-alpine
+    working_dir: /app
+    ports:
+      - "15900:3000"
     volumes:
-      - ./reports:/app/reports
-      - ./evidence:/app/evidence
-      - ./logs:/app/logs
-      - ./rules:/app/rules
-    # Extra hosts is needed on Linux to reach host.docker.internal
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - ./web:/app
+      - /app/.next
+    command: sh -c "if [ ! -f node_modules/.bin/next ]; then npm install; fi && npm run dev"
     environment:
-      # URL to reach OmniRoute running on the host
-      - API_BASE_URL=http://host.docker.internal:20128/v1
-      # Model identifier for OmniRoute
-      - AI_MODEL=google/gemini-pro
-      # Football Data API Key
-      - FOOTBALL_DATA_API_KEY=41d9a55df11e436f9fe5b90a76c8fc48
+      - WATCHPACK_POLLING=true
+      - NEXT_TELEMETRY_DISABLED=1
+      - NEXT_PUBLIC_API_URL=http://api:8000
+    depends_on:
+      - api

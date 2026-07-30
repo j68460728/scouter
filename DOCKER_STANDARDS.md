@@ -15,6 +15,15 @@ Para asegurar que los proyectos puedan convivir simultáneamente sin colisiones 
 - La conectividad interna entre contenedores se resuelve vía DNS de Docker.
 - Cualquier puerto expuesto al host en `docker-compose.yml` debe mapearse obligatoriamente dentro del rango **15900 al 15999**.
 
+### Asignación Específica (Offset de Puertos)
+
+Basado en el estándar de offset del workspace, los sufijos de puertos para este bloque (15900) se distribuyen de acuerdo a los servicios requeridos por `scouter`:
+
+| Servicio | Offset | Puerto | Fase |
+|---------------------------|--------|--------|----------|
+| Next.js (Frontend) | +00 | 15900 | MVP |
+| FastAPI (Backend) | +01 | 15901 | MVP |
+
 ## 2. Política de Higiene y Mantenimiento de Almacenamiento
 
 - El mantenimiento del disco (Garbage Collection) está delegado directamente al demonio de Docker (`/etc/docker/daemon.json`), con un umbral de retención de **10 GB**.
